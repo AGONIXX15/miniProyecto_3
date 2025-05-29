@@ -1,10 +1,6 @@
-package models.pokemon;
+package models;
 
-import models.pokemon.utils.Attack;
-import models.pokemon.utils.TypePokemon;
 import view.battle.BattlePokemonGUI;
-
-import java.util.Arrays;
 
 public class Pokemon {
 

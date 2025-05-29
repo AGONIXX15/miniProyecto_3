@@ -1,7 +1,6 @@
 package view.battle;
-import models.pokemon.Pokemon;
-import models.pokemon.utils.Attack;
-import utils.AttackFactory;
+import models.Attack;
+import models.AttackFactory;
 import utils.CustomFont;
 
 import javax.swing.*;
