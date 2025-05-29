@@ -1,7 +1,4 @@
-package models.pokemon.utils;
-import javax.sound.sampled.*;
-import java.io.File;
-
+package utils;
 import javax.sound.sampled.*;
 import java.io.File;
 

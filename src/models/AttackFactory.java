@@ -1,7 +1,4 @@
-package utils;
-
-import models.pokemon.utils.Attack;
-import models.pokemon.utils.TypeDamage;
+package models;
 
 public class AttackFactory {
     public static final Attack THUNDERBOLT = new Attack("Rayo", (short)40, TypeDamage.ESPECIAL);

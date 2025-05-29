@@ -1,10 +1,4 @@
-package utils;
-
-import models.pokemon.Pokemon;
-import models.pokemon.utils.Attack;
-import models.pokemon.utils.TypeDamage;
-import models.pokemon.utils.TypePokemon;
-import java.util.Scanner;
+package models;
 
 
 public class PokemonFactory {
