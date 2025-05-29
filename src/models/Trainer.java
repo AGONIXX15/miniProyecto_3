@@ -1,8 +1,6 @@
 package models;
-import models.pokemon.Pokemon;
-import models.pokemon.utils.Attack;
+
 import java.util.Random;
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**

@@ -2,11 +2,8 @@ package view.battle;
 import battle.BattlePokemon;
 import battle.BattleTrainer;
 import models.Trainer;
-import models.pokemon.Pokemon;
-import models.pokemon.utils.Attack;
-import models.pokemon.utils.ReproduceSound;
-import models.pokemon.utils.TypePokemon;
-import utils.AttackFactory;
+import models.Pokemon;
+import utils.ReproduceSound;
 import utils.CustomFont;
 
 import javax.imageio.ImageIO;
@@ -89,7 +86,7 @@ public class BattlePokemonGUI extends JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 
-        ImageIcon battleBackground = new ImageIcon("src/utils/images/battleBackground.jpg");
+        ImageIcon battleBackground = new ImageIcon("src/resources/images/battleBackground.jpg");
         Image scaledImage = battleBackground.getImage().getScaledInstance(
                 screenSize.width, screenSize.height, Image.SCALE_SMOOTH);
         ImageIcon scaledBackground = new ImageIcon(scaledImage);
@@ -107,7 +104,7 @@ public class BattlePokemonGUI extends JFrame {
         setLocationRelativeTo(null);
         //reproducir sonido
         sound = new ReproduceSound();
-        sound.loadSound("src/models/pokemon/utils/Voicy_Pokemon GO OST_ Battle.wav");
+        sound.loadSound("src/resources/sounds/Voicy_Pokemon GO OST_ Battle.wav");
         sound.loopSound();
     }
 

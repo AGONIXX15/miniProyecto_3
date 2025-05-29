@@ -87,19 +87,4 @@ public class MessageBattle extends JPanel {
 
 
 
-
-//    public static void main(String[] args) {
-//        JFrame frame = new JFrame("Mensaje Pokémon");
-//        frame.setLayout(new BorderLayout());
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setSize(400, 200);
-//        MessageBattle message = new MessageBattle();
-//        frame.add(message, BorderLayout.CENTER);
-//        PokemonStatusBar barra = new PokemonStatusBar("pikachu", 100, 100);
-//        message.enqueueMessage("mensaje de prueba");
-//        frame.add(barra, BorderLayout.SOUTH);
-//        frame.setLocationRelativeTo(null);
-//        frame.setVisible(true);
- //   }
-
 }

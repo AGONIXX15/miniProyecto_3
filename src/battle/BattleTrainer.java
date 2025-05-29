@@ -1,11 +1,10 @@
 package battle;
 
 import models.Trainer;
-import models.pokemon.Pokemon;
+import models.Pokemon;
 import view.battle.BattlePokemonGUI;
 //import view.PokemonMenu;
 
-import java.util.Scanner;
 
 public class BattleTrainer {
 
