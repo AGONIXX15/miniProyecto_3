@@ -64,6 +64,7 @@ public class BattlePokemonGUI extends JFrame {
         turnoLabel.setFont(CustomFont.loadfont(50));
         turnoLabel.setForeground(Color.WHITE);
         mainPanel.add(turnoLabel);
+        setSize(1000, 1000);
 
 
         p1 = new JPanel();
