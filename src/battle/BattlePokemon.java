@@ -20,10 +20,10 @@ public class BattlePokemon {
 
         boolean result = false;
         if(pokemon1.isAlive()){
-            BattlePokemonGUI.getInstance().putMessage(String.format("%s Gano la batalla pokemonn!\n", pokemon1.getName()));
+            BattlePokemonGUI.getInstance().sendMessage(String.format("%s Gano la batalla pokemonn!\n", pokemon1.getName()));
             result = true;
         }else{
-            BattlePokemonGUI.getInstance().putMessage(String.format("%s Gano la batalla pokemonn!\n", pokemon2.getName()));
+            BattlePokemonGUI.getInstance().sendMessage(String.format("%s Gano la batalla pokemonn!\n", pokemon2.getName()));
             result = true;
         }
 

@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import view.utils.Pokedex;
 import view.battle.BattlePokemonGUI;
+import controllers.ControllerBattle;
 
 
 public class ViewTrainer extends JFrame {
@@ -118,11 +119,14 @@ public class ViewTrainer extends JFrame {
                     tried = true;
                     MainFrame.reproduceSound.stopSound(); // parar sonido de inicio
                     ReproduceSound reproduceSound = new ReproduceSound();
-                    reproduceSound.loadSound("sounds/ready-fight-37973.wav");
+                    reproduceSound.loadSound("resources/sounds/ready-fight-37973.wav");
                     reproduceSound.playSound();
                     Timer t = new Timer(1000, event -> {
                         setVisible(false);
-                        new BattlePokemonGUI(trainer1, trainer2);
+                        ControllerBattle controller = new ControllerBattle(trainer1, trainer2);
+                        BattlePokemonGUI view = new BattlePokemonGUI(controller);
+                        controller.setViewBattle(view);
+
                     });
                     t.setRepeats(false);
                     t.start();

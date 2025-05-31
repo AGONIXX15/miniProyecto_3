@@ -90,7 +90,7 @@ public class MainFrame extends JFrame {
         setVisible(true); // Hace visible la ventana
 
         reproduceSound= new ReproduceSound();
-        reproduceSound.loadSound("sounds/Voicy_Pokemon GO Original Sounds_ GOCHA.wav");
+        reproduceSound.loadSound("resources/sounds/Voicy_Pokemon GO Original Sounds_ GOCHA.wav");
         reproduceSound.playSound();
     }
 
