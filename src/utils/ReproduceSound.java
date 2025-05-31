@@ -1,14 +1,19 @@
 package utils;
+
 import javax.sound.sampled.*;
-import java.io.File;
+import java.io.BufferedInputStream;
+import java.io.InputStream;
 
 public class ReproduceSound {
     private Clip clip;
 
     public void loadSound(String path) {
         try {
-            File fileSound = new File(path);
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(fileSound);
+            InputStream is = getClass().getClassLoader().getResourceAsStream(path);
+            if (is == null) throw new IllegalArgumentException("No se encontró el recurso: " + path);
+            BufferedInputStream bis = new BufferedInputStream(is);
+
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(bis);
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
 

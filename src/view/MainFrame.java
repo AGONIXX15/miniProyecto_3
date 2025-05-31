@@ -40,7 +40,7 @@ public class MainFrame extends JFrame {
         mensaje.setMaximumSize(new Dimension(800, 150));
 
 
-        ImageIcon imageHome = new ImageIcon("src/resources/images/botonInicio.png");
+        ImageIcon imageHome = new ImageIcon("resources/images/botonInicio.png");
         JButton begin = new JButton(imageHome);
         begin.setAlignmentX(Component.CENTER_ALIGNMENT);
         begin.setFocusPainted(false);
@@ -58,9 +58,10 @@ public class MainFrame extends JFrame {
         });
 
 
-        ImageIcon trainer1 = new ImageIcon("src/resources/images/fondo3.jpg");
+        ImageIcon trainer1 = new ImageIcon("resources/images/fondo3.jpg");
         Image image = trainer1.getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH);
         JLabel imagenLabel = new JLabel(new ImageIcon(image));
+
 
 
         panel.add(Box.createVerticalStrut(90)); // Espacio arriba del título
@@ -71,7 +72,8 @@ public class MainFrame extends JFrame {
         panel.add(begin);
 
 
-        ImageIcon backgroundImage = new ImageIcon("src/resources/images/fondo3.jpg");
+
+        ImageIcon backgroundImage = new ImageIcon("resources/images/fondo3.jpg");
         Image scaledImage = backgroundImage.getImage().getScaledInstance(
                 Toolkit.getDefaultToolkit().getScreenSize().width,
                 Toolkit.getDefaultToolkit().getScreenSize().height,
@@ -83,10 +85,12 @@ public class MainFrame extends JFrame {
         setContentPane(backgroundLabel);
 
 
+
+
         setVisible(true); // Hace visible la ventana
 
-        reproduceSound = new ReproduceSound();
-        reproduceSound.loadSound("src/resources/sounds/Voicy_Pokemon GO Original Sounds_ GOCHA.wav");
+        reproduceSound= new ReproduceSound();
+        reproduceSound.loadSound("sounds/Voicy_Pokemon GO Original Sounds_ GOCHA.wav");
         reproduceSound.playSound();
     }
 
