@@ -89,7 +89,9 @@ public class Pokemon {
         StringBuilder sb = new StringBuilder();
         sb.append("Nombre = ").append(name)
                 .append(", Tipo = ").append(type)
-                .append(", Salud = ").append(health);
+                .append(", Salud = ").append(health)
+            .append(", Velocidad = ").append(speed)
+        ;
 
 
         return sb.toString();
@@ -138,6 +140,10 @@ public class Pokemon {
 
     public Pokemon clonar(){
         return new Pokemon(name, healthMax, type, attacks,imagenUrl,defense, specialDefense, speed);
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 }
 

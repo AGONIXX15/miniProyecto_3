@@ -9,7 +9,7 @@ import java.awt.*;
 import static view.ViewTrainer.StartSelectTrainerTeam;
 
 public class MainFrame extends JFrame {
-   static ReproduceSound reproduceSound;
+    static ReproduceSound reproduceSound;
 
     public MainFrame() {
 
@@ -52,7 +52,7 @@ public class MainFrame extends JFrame {
         begin.setPreferredSize(new Dimension(imageHome.getIconWidth(), imageHome.getIconHeight()));
 
         begin.addActionListener(e -> {
-            StartSelectTrainerTeam ();
+            StartSelectTrainerTeam();
             setVisible(false);
 
         });
@@ -63,14 +63,12 @@ public class MainFrame extends JFrame {
         JLabel imagenLabel = new JLabel(new ImageIcon(image));
 
 
-
         panel.add(Box.createVerticalStrut(90)); // Espacio arriba del título
         panel.add(titulo);
         panel.add(Box.createVerticalStrut(30));
         panel.add(mensaje);
         panel.add(Box.createVerticalStrut(30));
         panel.add(begin);
-
 
 
         ImageIcon backgroundImage = new ImageIcon("src/resources/images/fondo3.jpg");
@@ -85,11 +83,9 @@ public class MainFrame extends JFrame {
         setContentPane(backgroundLabel);
 
 
-
-
         setVisible(true); // Hace visible la ventana
 
-        reproduceSound= new ReproduceSound();
+        reproduceSound = new ReproduceSound();
         reproduceSound.loadSound("src/resources/sounds/Voicy_Pokemon GO Original Sounds_ GOCHA.wav");
         reproduceSound.playSound();
     }

@@ -143,7 +143,7 @@ public class BattlePokemonGUI extends JFrame {
             System.out.println(pokemon2);
             trainer1Active = true;
             cards.show(p1, "vacio");
-            turno = (pokemon1.getHealthMax() > pokemon2.getHealthMax()) ? 1 : 0;
+            turno = (pokemon1.getSpeed() > pokemon2.getSpeed()) ? 1 : 0;
             setThings();
             return;
         }

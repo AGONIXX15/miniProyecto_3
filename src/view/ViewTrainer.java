@@ -1,9 +1,12 @@
 package view;
+
+import controller.ControllerTrainer;
 import models.Pokemon;
 import models.Trainer;
 import utils.ReproduceSound;
 import utils.CustomFont;
 import models.PokemonFactory;
+
 import javax.imageio.ImageIO;
 import java.net.URL;
 
@@ -12,22 +15,26 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+
 import view.utils.Pokedex;
 import view.battle.BattlePokemonGUI;
 
 
-public class ViewTrainer extends JFrame {
-    Trainer trainer1;
-    Trainer trainer2;
+public class ViewTrainer extends JFrame implements ViewTrainerInterface {
     String nombre1, nombre2;
     JPanel contenedor;
-    JLabel entrenador1, entrenador2,textoBienvenida;
-    JButton iniciarBatalla, mostrarEquipo, asignarEntreadores;
+    JLabel entrenador1, entrenador2, textoBienvenida;
+    JButton iniciarBatalla, mostrarEquipo, asignarEntreadores,cambiarConsola;
     TextField entrenador1Texto, entrenador2Texto;
-    Boolean entreadoresIntroduccidos,asignacionDeEquipos = false;
-    private boolean tried;
+    public boolean entreadoresIntroduccidos, asignacionDeEquipos = false;
+    public boolean tried;
+
 
     public ViewTrainer() {
+        if(ControllerTrainer.getInstance().trainer1 != null) {
+            nombre1 = ControllerTrainer.getInstance().trainer1.getNameTrainer();
+            nombre2 = ControllerTrainer.getInstance().trainer2.getNameTrainer();
+        }
         tried = false;
         setTitle("Seleccionar Entrenadores");
 
@@ -36,10 +43,10 @@ public class ViewTrainer extends JFrame {
         UIManager.put("Button.background", new Color(205, 64, 64));
         UIManager.put("Button.foreground", Color.WHITE);
 
-        ImageIcon fondoIcon,fondoBotonSeleccionar,fondoBotonAsignar,fondoBotonBatalla;
+        ImageIcon fondoIcon, fondoBotonSeleccionar, fondoBotonAsignar, fondoBotonBatalla;
 
         fondoIcon = new ImageIcon("src/resources/images/fondoSeleccion.png");
-        fondoBotonSeleccionar = new ImageIcon("src/resources/images/fondoBotonSeleccionar3.png");
+        fondoBotonSeleccionar = new ImageIcon("C:\\Users\\sebas\\OneDrive\\Escritorio\\miniproyecto3\\miniProyecto_3\\src\\resources\\images\\fondoBotonSeleccionar3.png");
         fondoBotonAsignar = new ImageIcon("src/resources/images/fondoBotonAsignar.png");
         fondoBotonBatalla = new ImageIcon("src/resources/images/fondoBotonBatalla.png");
         JLabel fondo = new JLabel(fondoIcon);
@@ -68,6 +75,7 @@ public class ViewTrainer extends JFrame {
 
         entrenador1Texto = new TextField();
         entrenador1Texto.setBounds(250, 350, 300, 30);
+        entrenador1Texto.setText(nombre1);
         fondo.add(entrenador1Texto);
 
         entrenador2 = new JLabel("Entrenador 2:");
@@ -78,21 +86,41 @@ public class ViewTrainer extends JFrame {
 
         entrenador2Texto = new TextField();
         entrenador2Texto.setBounds(900, 350, 300, 30);
+        entrenador2Texto.setText(nombre2);
         fondo.add(entrenador2Texto);
 
         // Botones
-        asignarEntreadores = new JButton("Ingresar entrenadores",fondoBotonSeleccionar);
+        asignarEntreadores = new JButton("Ingresar entrenadores", fondoBotonSeleccionar);
         asignarEntreadores.setBounds(600, 500, 300, 60);
         fondo.add(asignarEntreadores);
 
-        mostrarEquipo = new JButton("Asignar y Mostrar Equipo",fondoBotonAsignar);
+        mostrarEquipo = new JButton("Asignar y Mostrar Equipo", fondoBotonAsignar);
         mostrarEquipo.setBounds(600, 600, 300, 60);
         fondo.add(mostrarEquipo);
 
-        iniciarBatalla = new JButton("Iniciar Batalla",fondoBotonBatalla);
+        iniciarBatalla = new JButton("Iniciar Batalla", fondoBotonBatalla);
         iniciarBatalla.setBounds(600, 700, 300, 60);
         fondo.add(iniciarBatalla);
 
+        cambiarConsola = new JButton("Cambiar Consola");
+        cambiarConsola.setBounds(5, 700, 300, 60);
+        fondo.add(cambiarConsola);
+
+
+        cambiarConsola.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                ControllerTrainer controller = ControllerTrainer.getInstance();
+                if(controller.trainer1 == null || controller.trainer2 == null) {
+                    controller.introducirTrainers(entrenador1Texto.getText(), entrenador2Texto.getText());
+                }
+                ViewTrainerConsola viewConsola = new ViewTrainerConsola();
+                controller.setViewI(viewConsola);
+                viewConsola.mostrarMenu();
+
+
+            }
+        });
         asignarEntreadores.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 AlertasignarEquipo();
@@ -101,7 +129,7 @@ public class ViewTrainer extends JFrame {
 
         mostrarEquipo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (entreadoresIntroduccidos) {
+                if (entreadoresIntroduccidos || ControllerTrainer.getInstance().trainer1!=null) {
                     asignacionDeEquipos = true;
                     mostrarEquipo();
                     return;
@@ -114,21 +142,22 @@ public class ViewTrainer extends JFrame {
 
         iniciarBatalla.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if(entreadoresIntroduccidos && asignacionDeEquipos && !tried) {
+                System.out.println(ControllerTrainer.getInstance().trainer1);
+                if (ControllerTrainer.getInstance().trainer1 != null || (entreadoresIntroduccidos && asignacionDeEquipos)) {
                     tried = true;
-                    MainFrame.reproduceSound.stopSound(); // parar sonido de inicio
-                    ReproduceSound reproduceSound = new ReproduceSound();
-                    reproduceSound.loadSound("src/resources/sounds/ready-fight-37973.wav");
-                    reproduceSound.playSound();
+                    //MainFrame.reproduceSound.stopSound(); // parar sonido de inicio
+                    //ReproduceSound reproduceSound = new ReproduceSound();
+                    // reproduceSound.loadSound("src/resources/sounds/ready-fight-37973.wav");
+                    // reproduceSound.playSound();
                     Timer t = new Timer(1000, event -> {
                         setVisible(false);
-                        new BattlePokemonGUI(trainer1, trainer2);
+                        new BattlePokemonGUI(ControllerTrainer.getInstance().trainer1, ControllerTrainer.getInstance().trainer2);
                     });
                     t.setRepeats(false);
                     t.start();
                     return;
                 }
-                if (!tried){
+                if (!tried) {
                     JOptionPane.showMessageDialog(null, "ponga los entrenadores y asigne su equipo");
                 }
 
@@ -155,27 +184,17 @@ public class ViewTrainer extends JFrame {
 
     public void mostrarEquipo() {
 
+        JPanel panel = new JPanel(new GridLayout(1, 2));
 
 
+        //mostrar equipo de entranador1
+        JPanel panel1 = new JPanel();
 
-        PokemonFactory cargasEquipos = new PokemonFactory();
-            trainer1 = new Trainer(nombre1, cargasEquipos.loadAvailablePokemons());
-            trainer1.randomTeam();
-            trainer2 = new Trainer(nombre2, cargasEquipos.loadAvailablePokemons());
-            trainer2.randomTeam();
-
-            JPanel panel = new JPanel(new GridLayout(1, 2));
-
-
-
-            //mostrar equipo de entranador1
-            JPanel panel1 = new JPanel();
-
-            panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
-            JLabel textoEquipo =new JLabel("Equipo de " + trainer1.getNameTrainer() + ":");
-            textoEquipo.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-            panel1.add(textoEquipo);
-        for (Pokemon p : trainer1.getTeamArray()) {
+        panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
+        JLabel textoEquipo = new JLabel("Equipo de " +nombre1 + ":");
+        textoEquipo.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+        panel1.add(textoEquipo);
+        for (Pokemon p : ControllerTrainer.getInstance().trainer1.getTeamArray()) {
             JPanel pokemonPanel = new JPanel(new BorderLayout());
             pokemonPanel.setBorder(BorderFactory.createLineBorder(Color.blue, 2)); // Borde negro
             pokemonPanel.setBackground(Color.cyan); // Fondo blanco (opcional)
@@ -195,21 +214,21 @@ public class ViewTrainer extends JFrame {
                 }
             }
 
-            JLabel infoLabel = new JLabel("Nombre: " + p.getName() + ", Tipo: " + p.getType() + ", Vida: " + p.getHealth());
+            JLabel infoLabel = new JLabel("Nombre: " + p.getName() + ", Tipo: " + p.getType() + ", Vida: " + p.getHealth()+", velocidad: "+p.getSpeed());
             infoLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
             pokemonPanel.add(infoLabel, BorderLayout.CENTER);
 
-            panel1.add(Box.createRigidArea(new Dimension(10,3))); // Espaciado entre recuadros
+            panel1.add(Box.createRigidArea(new Dimension(10, 3))); // Espaciado entre recuadros
             panel1.add(pokemonPanel);
         }
 
-            //mostrar equipo de entranador2
-            JPanel panel2 = new JPanel();
-            panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
-            JLabel textoEquipo2 = new JLabel("Equipo de " + trainer2.getNameTrainer() + ":");
-            textoEquipo2.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-            panel2.add(textoEquipo2);
-        for (Pokemon p : trainer2.getTeamArray()) {
+        //mostrar equipo de entranador2
+        JPanel panel2 = new JPanel();
+        panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
+        JLabel textoEquipo2 = new JLabel("Equipo de " + nombre2+ ":");
+        textoEquipo2.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+        panel2.add(textoEquipo2);
+        for (Pokemon p : ControllerTrainer.getInstance().trainer2.getTeamArray()) {
             JPanel pokemonPanel = new JPanel(new BorderLayout());
             pokemonPanel.setBorder(BorderFactory.createLineBorder(Color.RED, 2)); // Borde negro
             pokemonPanel.setBackground(new Color(205, 64, 64)); // Fondo blanco (opcional)
@@ -229,11 +248,11 @@ public class ViewTrainer extends JFrame {
                 }
             }
 
-            JLabel infoLabel = new JLabel("Nombre: " + p.getName() + ", Tipo: " + p.getType() + ", Vida: " + p.getHealth());
+            JLabel infoLabel = new JLabel("Nombre: " + p.getName() + ", Tipo: " + p.getType() + ", Vida: " + p.getHealth()+", velocidad: "+p.getSpeed());
             infoLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
             pokemonPanel.add(infoLabel, BorderLayout.CENTER);
 
-            panel2.add(Box.createRigidArea(new Dimension(10,3))); // Espaciado entre recuadros
+            panel2.add(Box.createRigidArea(new Dimension(10, 3))); // Espaciado entre recuadros
             panel2.add(pokemonPanel);
         }
 
@@ -242,12 +261,26 @@ public class ViewTrainer extends JFrame {
         panel.add(panel2);
 
 
-            JOptionPane.showMessageDialog(this, panel, "Equipos", JOptionPane.PLAIN_MESSAGE);
-        }
+        JOptionPane.showMessageDialog(this, panel, "Equipos", JOptionPane.PLAIN_MESSAGE);
+    }
 
 
-    public static void StartSelectTrainerTeam (){
+    public static void StartSelectTrainerTeam() {
         new ViewTrainer();
 
     }
+
+    @Override
+    public void mostrarMenu() {
+        this.setVisible(true);
+    }
+
+
+
+    @Override
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+
+
 }

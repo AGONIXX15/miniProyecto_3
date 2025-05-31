@@ -27,6 +27,11 @@ public class Trainer {
         this.team = new Pokemon[3];
     }
 
+    public Trainer() {
+        this.nameTrainer = "";
+        this.team = new Pokemon[3];
+    }
+
     public String getNameTrainer() {
         return nameTrainer;
     }
@@ -36,7 +41,7 @@ public class Trainer {
     }
 
     public void getTeam() {
-        System.out.println("Tu equipo de batalla es: ");
+        //muestra el equipo del entrenador nombre,tipo,salud
         for (int i = 0; i < team.length; i++) {
             System.out.println(team[i].showInfo());
         }
@@ -72,7 +77,7 @@ public class Trainer {
     }
 
     public void addTeam() {
-        for (int i = 0; i <3; i++) {
+        for (int i = 0; i < 3; i++) {
             team[i] = SelectPokemon();
         }
     }
