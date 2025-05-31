@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import view.utils.Pokedex;
 import view.battle.BattlePokemonGUI;
+import controllers.ControllerBattle;
 
 
 public class ViewTrainer extends JFrame {
@@ -38,10 +39,10 @@ public class ViewTrainer extends JFrame {
 
         ImageIcon fondoIcon,fondoBotonSeleccionar,fondoBotonAsignar,fondoBotonBatalla;
 
-        fondoIcon = new ImageIcon("src/resources/images/fondoSeleccion.png");
-        fondoBotonSeleccionar = new ImageIcon("src/resources/images/fondoBotonSeleccionar3.png");
-        fondoBotonAsignar = new ImageIcon("src/resources/images/fondoBotonAsignar.png");
-        fondoBotonBatalla = new ImageIcon("src/resources/images/fondoBotonBatalla.png");
+        fondoIcon = new ImageIcon("resources/images/fondoSeleccion.png");
+        fondoBotonSeleccionar = new ImageIcon("resources/images/fondoBotonSeleccionar3.png");
+        fondoBotonAsignar = new ImageIcon("resources/images/fondoBotonAsignar.png");
+        fondoBotonBatalla = new ImageIcon("resources/images/fondoBotonBatalla.png");
         JLabel fondo = new JLabel(fondoIcon);
         fondo.setBounds(0, 0, fondoIcon.getIconWidth(), fondoIcon.getIconHeight());
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -118,11 +119,14 @@ public class ViewTrainer extends JFrame {
                     tried = true;
                     MainFrame.reproduceSound.stopSound(); // parar sonido de inicio
                     ReproduceSound reproduceSound = new ReproduceSound();
-                    reproduceSound.loadSound("src/resources/sounds/ready-fight-37973.wav");
+                    reproduceSound.loadSound("resources/sounds/ready-fight-37973.wav");
                     reproduceSound.playSound();
                     Timer t = new Timer(1000, event -> {
                         setVisible(false);
-                        new BattlePokemonGUI(trainer1, trainer2);
+                        ControllerBattle controller = new ControllerBattle(trainer1, trainer2);
+                        BattlePokemonGUI view = new BattlePokemonGUI(controller);
+                        controller.setViewBattle(view);
+
                     });
                     t.setRepeats(false);
                     t.start();

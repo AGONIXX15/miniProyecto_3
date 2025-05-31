@@ -28,12 +28,12 @@ public class BattleTrainer {
         }
 
         if (BattleTrainer.trainerHasLost(trainer1)){
-            BattlePokemonGUI.getInstance().putMessage(String.format("%s Perdio la batalla pokemon!\n", trainer1.getNameTrainer()));
-            BattlePokemonGUI.getInstance().putMessage(String.format("%s gano la batalla pokemon!\n", trainer2.getNameTrainer()));
+            BattlePokemonGUI.getInstance().sendMessage(String.format("%s Perdio la batalla pokemon!\n", trainer1.getNameTrainer()));
+            BattlePokemonGUI.getInstance().sendMessage(String.format("%s gano la batalla pokemon!\n", trainer2.getNameTrainer()));
             return true;
         } else {
-            BattlePokemonGUI.getInstance().putMessage(String.format("%s Gano la batalla pokemonn!", trainer1.getNameTrainer()));
-            BattlePokemonGUI.getInstance().putMessage(String.format("%s Perdio la batalla pokemonn!", trainer2.getNameTrainer()));
+            BattlePokemonGUI.getInstance().sendMessage(String.format("%s Gano la batalla pokemonn!", trainer1.getNameTrainer()));
+            BattlePokemonGUI.getInstance().sendMessage(String.format("%s Perdio la batalla pokemonn!", trainer2.getNameTrainer()));
             return true;
         }
     }
