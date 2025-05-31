@@ -114,6 +114,8 @@ public class BattlePokemonGUI extends JFrame {
     public void chooseAgain(){
 
         removeThings();
+        ((ShowPokemons) p1.getComponent(0)).update();
+        ((ShowPokemons) p1.getComponent(1)).update();
         mainPanel.remove(attacksButtons);
         pokemon1 = null;
         pokemon2 = null;
