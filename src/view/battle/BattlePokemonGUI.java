@@ -86,7 +86,7 @@ public class BattlePokemonGUI extends JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 
-        ImageIcon battleBackground = new ImageIcon("src/resources/images/battleBackground.jpg");
+        ImageIcon battleBackground = new ImageIcon("resources/images/battleBackground.jpg");
         Image scaledImage = battleBackground.getImage().getScaledInstance(
                 screenSize.width, screenSize.height, Image.SCALE_SMOOTH);
         ImageIcon scaledBackground = new ImageIcon(scaledImage);
@@ -104,7 +104,7 @@ public class BattlePokemonGUI extends JFrame {
         setLocationRelativeTo(null);
         //reproducir sonido
         sound = new ReproduceSound();
-        sound.loadSound("src/resources/sounds/Voicy_Pokemon GO OST_ Battle.wav");
+        sound.loadSound("resources/sounds/Voicy_Pokemon GO OST_ Battle.wav");
         sound.loopSound();
     }
 
@@ -158,10 +158,10 @@ public class BattlePokemonGUI extends JFrame {
             System.out.println("algo raro paso error");
             return;
         }
-            bar1 = new PokemonStatusBar(pokemon1.getName(), pokemon1.getHealth(), pokemon1.getHealthMax());
-            bar1.setBounds(1000, 100,300,80);
-            bar2 = new PokemonStatusBar(pokemon2.getName(), pokemon2.getHealth(), pokemon2.getHealthMax());
-            bar2.setBounds(150, 400,300,80);
+        bar1 = new PokemonStatusBar(pokemon1.getName(), pokemon1.getHealth(), pokemon1.getHealthMax());
+        bar1.setBounds(1000, 100,300,80);
+        bar2 = new PokemonStatusBar(pokemon2.getName(), pokemon2.getHealth(), pokemon2.getHealthMax());
+        bar2.setBounds(150, 400,300,80);
 
 
 
@@ -211,6 +211,7 @@ public class BattlePokemonGUI extends JFrame {
         if(BattlePokemon.findOut(pokemon1, pokemon2)){
             chooseAgain();
         }
+
 
     }
 
