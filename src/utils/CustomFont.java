@@ -10,6 +10,7 @@ public class CustomFont {
     public static Font loadfont(float size) {
         try {
             InputStream is = CustomFont.class.getClassLoader().getResourceAsStream("fonts/PocketMonk-15ze.ttf");
+            assert is != null;
             Font font = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(size);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(font);
