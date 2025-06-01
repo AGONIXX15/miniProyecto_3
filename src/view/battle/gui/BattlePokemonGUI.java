@@ -1,11 +1,11 @@
-package view.battle;
+package view.battle.gui;
 
 import battle.BattleTrainer;
 import controllers.ControllerBattle;
 import models.Pokemon;
-import models.Trainer;
 import utils.ReproduceSound;
 import utils.CustomFont;
+import view.battle.*;
 
 import javax.imageio.ImageIO;
 import java.net.URL;
@@ -69,7 +69,6 @@ public class BattlePokemonGUI extends JFrame implements ViewBattle {
         JPanel p2 = new JPanel();
         p2.setOpaque(false);
         choose_menu.add(p2, "vacio");
-        cards_menu.show(choose_menu, "trainer1");
         choose_menu.setBounds(100, 100, 500, 500);
         choose_menu.setVisible(true);
 
@@ -108,8 +107,13 @@ public class BattlePokemonGUI extends JFrame implements ViewBattle {
         setLocationRelativeTo(null);
         //reproducir sonido
         sound = new ReproduceSound();
-        sound.loadSound("resources/sounds/Voicy_Pokemon GO OST_ Battle.wav");
+        sound.loadSound("sounds/Voicy_Pokemon GO OST_ Battle.wav");
         sound.loopSound();
+    }
+
+    @Override
+    public void start(){
+        cards_menu.show(choose_menu, "trainer1");
     }
 
     public void chooseAgain() {

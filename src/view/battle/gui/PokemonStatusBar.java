@@ -1,4 +1,4 @@
-package view.battle;
+package view.battle.gui;
 import utils.CustomFont;
 
 import javax.swing.*;

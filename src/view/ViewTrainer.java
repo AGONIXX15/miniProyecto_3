@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import view.utils.Pokedex;
-import view.battle.BattlePokemonGUI;
+import view.battle.gui.BattlePokemonGUI;
 import controllers.ControllerBattle;
 
 
@@ -119,13 +119,14 @@ public class ViewTrainer extends JFrame {
                     tried = true;
                     MainFrame.reproduceSound.stopSound(); // parar sonido de inicio
                     ReproduceSound reproduceSound = new ReproduceSound();
-                    reproduceSound.loadSound("resources/sounds/ready-fight-37973.wav");
+                    reproduceSound.loadSound("sounds/ready-fight-37973.wav");
                     reproduceSound.playSound();
                     Timer t = new Timer(1000, event -> {
                         setVisible(false);
                         ControllerBattle controller = new ControllerBattle(trainer1, trainer2);
                         BattlePokemonGUI view = new BattlePokemonGUI(controller);
                         controller.setViewBattle(view);
+                        controller.startBattle();
 
                     });
                     t.setRepeats(false);

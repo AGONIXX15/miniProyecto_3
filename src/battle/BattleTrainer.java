@@ -2,7 +2,7 @@ package battle;
 
 import models.Trainer;
 import models.Pokemon;
-import view.battle.BattlePokemonGUI;
+import view.battle.gui.BattlePokemonGUI;
 //import view.PokemonMenu;
 
 

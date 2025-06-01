@@ -1,7 +1,6 @@
 package models;
 
 import controllers.ControllerBattle;
-import view.battle.BattlePokemonGUI;
 
 public class Combat {
     private boolean turn;

@@ -1,6 +1,6 @@
 package models;
 
-import view.battle.BattlePokemonGUI;
+import view.battle.gui.BattlePokemonGUI;
 
 public class Pokemon {
 
