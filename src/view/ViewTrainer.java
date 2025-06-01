@@ -1,11 +1,10 @@
 package view;
 
-import controller.ControllerTrainer;
+import controllers.ControllerBattle;
+import controllers.ControllerTrainer;
 import models.Pokemon;
-import models.Trainer;
 import utils.ReproduceSound;
 import utils.CustomFont;
-import models.PokemonFactory;
 
 import javax.imageio.ImageIO;
 import java.net.URL;
@@ -17,8 +16,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import view.utils.Pokedex;
-import view.battle.BattlePokemonGUI;
-
+import view.battle.gui.BattlePokemonGUI;
 
 public class ViewTrainer extends JFrame implements ViewTrainerInterface {
     String nombre1, nombre2;
@@ -104,6 +102,7 @@ public class ViewTrainer extends JFrame implements ViewTrainerInterface {
 
         cambiarConsola = new JButton("Cambiar Consola");
         cambiarConsola.setBounds(5, 700, 300, 60);
+        cambiarConsola.setBackground(Color.CYAN);
         fondo.add(cambiarConsola);
 
 
@@ -111,10 +110,8 @@ public class ViewTrainer extends JFrame implements ViewTrainerInterface {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 ControllerTrainer controller = ControllerTrainer.getInstance();
-                if(controller.trainer1 == null || controller.trainer2 == null) {
-                    controller.introducirTrainers(entrenador1Texto.getText(), entrenador2Texto.getText());
-                }
-                ViewTrainerConsola viewConsola = new ViewTrainerConsola();
+
+                ViewTrainerConsole viewConsola = new ViewTrainerConsole(controller);
                 controller.setViewI(viewConsola);
                 viewConsola.mostrarMenu();
 
@@ -134,7 +131,7 @@ public class ViewTrainer extends JFrame implements ViewTrainerInterface {
                     mostrarEquipo();
                     return;
                 }
-                JOptionPane.showMessageDialog(null, "ponga los entrenadores");
+                JOptionPane.showMessageDialog(null, "Por favor,Ingrese los entrenadores");
             }
 
         });
@@ -145,20 +142,26 @@ public class ViewTrainer extends JFrame implements ViewTrainerInterface {
                 System.out.println(ControllerTrainer.getInstance().trainer1);
                 if (ControllerTrainer.getInstance().trainer1 != null || (entreadoresIntroduccidos && asignacionDeEquipos)) {
                     tried = true;
-                    MainFrame.reproduceSound.stopSound(); // parar sonido de inicio
+                    if(MainFrame.reproduceSound != null){
+                        MainFrame.reproduceSound.stopSound();
+                    }
+                    // parar sonido de inicio
                     ReproduceSound reproduceSound = new ReproduceSound();
                     reproduceSound.loadSound("sounds/ready-fight-37973.wav");
                     reproduceSound.playSound();
                     Timer t = new Timer(1000, event -> {
                         setVisible(false);
-                        new BattlePokemonGUI(ControllerTrainer.getInstance().trainer1, ControllerTrainer.getInstance().trainer2);
+                        ControllerBattle controller = new ControllerBattle(ControllerTrainer.getInstance().trainer1, ControllerTrainer.getInstance().trainer2);
+                        BattlePokemonGUI view = new BattlePokemonGUI(controller);
+                        controller.setViewBattle(view);
+                        controller.startBattle();
                     });
                     t.setRepeats(false);
                     t.start();
                     return;
                 }
                 if (!tried) {
-                    JOptionPane.showMessageDialog(null, "ponga los entrenadores y asigne su equipo");
+                    JOptionPane.showMessageDialog(null, "Ingrese los entrenadores y asigne su equipo");
                 }
 
             }
@@ -189,6 +192,7 @@ public class ViewTrainer extends JFrame implements ViewTrainerInterface {
 
         //mostrar equipo de entranador1
         JPanel panel1 = new JPanel();
+        ControllerTrainer.getInstance().introducirTrainers(entrenador1Texto.getText(), entrenador2Texto.getText());
 
         panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
         JLabel textoEquipo = new JLabel("Equipo de " +nombre1 + ":");
@@ -265,10 +269,7 @@ public class ViewTrainer extends JFrame implements ViewTrainerInterface {
     }
 
 
-    public static void StartSelectTrainerTeam() {
-        new ViewTrainer();
 
-    }
 
     @Override
     public void mostrarMenu() {

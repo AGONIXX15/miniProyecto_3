@@ -6,6 +6,7 @@ import models.Pokemon;
 import models.Trainer;
 import view.battle.ViewBattle;
 
+import java.awt.*;
 import java.util.Scanner;
 
 public class BattlePokemonConsole implements ViewBattle {
@@ -27,10 +28,16 @@ public class BattlePokemonConsole implements ViewBattle {
         do {
             PokemonMenu.showAllPokemonsAlive(trainer.team);
             System.out.println(trainer.getNameTrainer() + " Escoje un pokemon de tu equipo para comenzar a luchar: "+ Colors.RESET);
-            index = Integer.parseInt(sc.nextLine())-1;
+            String line = sc.nextLine();
+            if (!line.isEmpty()){
+                index = Integer.parseInt(line)-1;
+            } else {
+                index = -1;
+            }
+
             condition = !(index >= 0 && index < trainer.team.length && trainer.team[index].isAlive());
-            if(!trainer.team[index].isAlive()){
-                System.out.println("escoje un pokemon que este vivo");
+            if(index >= 0 && !trainer.team[index].isAlive()){
+                System.out.println("⚠️Por Favor, escoje un pokemon que este vivo!");
             }
         }while(condition);
         return index;
@@ -59,12 +66,13 @@ public class BattlePokemonConsole implements ViewBattle {
         Scanner sc = new Scanner(System.in);
         boolean condition = false;
         int index;
+        System.out.printf(Colors.WHITE_BOLD + "\nTurno de %s%n" + Colors.RESET, controller.getTurn() ? controller.trainer1.getNameTrainer() : controller.trainer2.getNameTrainer());
         do {
             PokemonMenu.showPokemonAttacks(pokemon);
             index = Integer.parseInt(sc.nextLine())-1;
             condition = !(index >= 0 && index < pokemon.getAttacks().length);
             if(condition){
-                System.out.println(Colors.RED+"⚠️por favor ingresa uno de los ataques disponibles!"+Colors.RESET);
+                System.out.println(Colors.RED+"⚠️Por favor ingresa uno de los ataques disponibles!"+Colors.RESET);
             }
         }while(condition);
         return index;

@@ -31,7 +31,13 @@ public class ControllerBattle {
     }
 
     public void startBattle(){
-        viewBattle.start();
+        if (trainer1 == null && trainer2 == null) {
+            System.out.println("Por favor, Completa todos los campos");
+        }else {
+            System.out.println("¡Batalla iniciada!");
+            viewBattle.start();
+        }
+
     }
 
     public void startCombat(int index1, int index2) {

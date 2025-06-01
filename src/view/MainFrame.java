@@ -1,12 +1,12 @@
 package view;
 
+import controllers.ControllerTrainer;
 import utils.ReproduceSound;
 import utils.CustomFont;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static view.ViewTrainer.StartSelectTrainerTeam;
 
 public class MainFrame extends JFrame {
     static ReproduceSound reproduceSound;
@@ -48,12 +48,15 @@ public class MainFrame extends JFrame {
         begin.setContentAreaFilled(false);
         begin.setOpaque(false);
 
-// Establece el tamaño igual al de la imagen
+        // Establece el tamaño igual al de la imagen
         begin.setPreferredSize(new Dimension(imageHome.getIconWidth(), imageHome.getIconHeight()));
 
         begin.addActionListener(e -> {
-            StartSelectTrainerTeam();
             setVisible(false);
+            ViewTrainer viewTrainer = new ViewTrainer();
+            ControllerTrainer controller = ControllerTrainer.getInstance();
+            controller.setViewI(viewTrainer);
+
 
         });
 
