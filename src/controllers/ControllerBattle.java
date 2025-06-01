@@ -30,6 +30,10 @@ public class ControllerBattle {
         viewBattle.sendMessage(message);
     }
 
+    public void startBattle(){
+        viewBattle.start();
+    }
+
     public void startCombat(int index1, int index2) {
         Pokemon pokemon1 = trainer1.getTeamArray()[index1];
         Pokemon pokemon2 = trainer2.getTeamArray()[index2];

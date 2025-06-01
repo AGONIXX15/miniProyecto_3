@@ -1,4 +1,4 @@
-package view.battle;
+package view.battle.gui;
 import models.Attack;
 import models.AttackFactory;
 import utils.CustomFont;
