@@ -9,7 +9,6 @@ import utils.CustomFont;
 import javax.imageio.ImageIO;
 import java.net.URL;
 
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,7 +25,6 @@ public class ViewTrainer extends JFrame implements ViewTrainerInterface {
     TextField entrenador1Texto, entrenador2Texto;
     public boolean entreadoresIntroduccidos, asignacionDeEquipos = false;
     public boolean tried;
-
 
     public ViewTrainer() {
         if(ControllerTrainer.getInstance().trainer1 != null) {
@@ -170,7 +168,6 @@ public class ViewTrainer extends JFrame implements ViewTrainerInterface {
 
     }
 
-
     //al darle al boton de ingresar entrenadores
     public void AlertasignarEquipo() {
         nombre1 = entrenador1Texto.getText();
@@ -184,11 +181,9 @@ public class ViewTrainer extends JFrame implements ViewTrainerInterface {
         entreadoresIntroduccidos = false;
     }
 
-
     public void mostrarEquipo() {
 
         JPanel panel = new JPanel(new GridLayout(1, 2));
-
 
         //mostrar equipo de entranador1
         JPanel panel1 = new JPanel();
@@ -260,28 +255,19 @@ public class ViewTrainer extends JFrame implements ViewTrainerInterface {
             panel2.add(pokemonPanel);
         }
 
-
         panel.add(panel1);
         panel.add(panel2);
 
-
         JOptionPane.showMessageDialog(this, panel, "Equipos", JOptionPane.PLAIN_MESSAGE);
     }
-
-
-
 
     @Override
     public void mostrarMenu() {
         this.setVisible(true);
     }
 
-
-
     @Override
     public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
-
-
 }

@@ -49,8 +49,6 @@ public class PokemonStatusBar extends JPanel {
        timer.start();
    }
 
-
-
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

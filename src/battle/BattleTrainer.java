@@ -3,14 +3,8 @@ package battle;
 import models.Trainer;
 import models.Pokemon;
 import view.battle.gui.BattlePokemonGUI;
-//import view.PokemonMenu;
-
 
 public class BattleTrainer {
-
-
-
-
 
     public static boolean trainerHasLost(Trainer trainer) {
         for(Pokemon pokemon: trainer.getTeamArray()){
@@ -20,7 +14,6 @@ public class BattleTrainer {
         }
         return true;
     }
-
 
     public static boolean combat(Trainer trainer1, Trainer trainer2) {
         if(!BattleTrainer.trainerHasLost(trainer1) && !BattleTrainer.trainerHasLost(trainer2)) {

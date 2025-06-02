@@ -22,16 +22,6 @@ public class Trainer {
         this.team = new Pokemon[3];
     }
 
-    public Trainer(String nameTrainer) {
-        this.nameTrainer = nameTrainer;
-        this.team = new Pokemon[3];
-    }
-
-    public Trainer() {
-        this.nameTrainer = "";
-        this.team = new Pokemon[3];
-    }
-
     public String getNameTrainer() {
         return nameTrainer;
     }
@@ -46,11 +36,6 @@ public class Trainer {
             System.out.println(team[i].showInfo());
         }
     }
-
-    public void setTeam(Pokemon[] team) {
-        this.team = team;
-    }
-
 
     public Pokemon SelectPokemon() {
         Scanner sc = new Scanner(System.in);

@@ -8,10 +8,7 @@ import view.battle.console.Colors;
 
 import java.util.Scanner;
 
-
 public class PokemonMenu {
-
-
 
     //mostrar pokemones disponibles
     public static void showAllPokemons(Pokemon[] pokemons) {
@@ -32,7 +29,6 @@ public class PokemonMenu {
             }
         }
     }
-
 
     //Mostrar los ataques de un Pokémon específico
     public static void showPokemonAttacks(Pokemon pokemon) {

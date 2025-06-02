@@ -25,11 +25,9 @@ public class BattlePokemonGUI extends JFrame implements ViewBattle {
     private JLabel labelPokemon1, labelPokemon2, turnoLabel;
     private ReproduceSound sound;
 
-
     private static BattlePokemonGUI instance;
     private boolean trainer1Active;
     private ControllerBattle controllerBattle;
-
 
     public static BattlePokemonGUI getInstance() {
         return instance;
@@ -140,7 +138,6 @@ public class BattlePokemonGUI extends JFrame implements ViewBattle {
         cards_menu.show(choose_menu, "trainer1");
     }
 
-
     public void updateLabel() {
         turnoLabel.setText(String.format("turno de: %s", (controllerBattle.getTurn()) ? controllerBattle.trainer1.getNameTrainer() : controllerBattle.trainer2.getNameTrainer()));
     }
@@ -150,7 +147,6 @@ public class BattlePokemonGUI extends JFrame implements ViewBattle {
             index2 = ((ShowPokemons) choose_menu.getComponent(1)).getChoose();
             System.out.println(index2);
             trainer1Active = true;
-            System.out.println("convirtiendo a vacio");
             choose_menu.setVisible(false);
             controllerBattle.startCombat(index1, index2);
             setThings();
@@ -183,20 +179,6 @@ public class BattlePokemonGUI extends JFrame implements ViewBattle {
         messageBattle.repaint();
     }
 
-   // public void updateTurn() {
-   //     System.out.println("turno: " + turno);
-   //     System.out.println(pokemon1);
-   //     System.out.println(pokemon2);
-   //     if (pokemon1.isAlive() && pokemon2.isAlive()) {
-   //         turno = !turno;
-   //         System.out.println("turno movido: " + turno);
-   //         updateThings();
-   //         return;
-   //     }
-   //     chooseAgain();
-   // }
-
-
     public void makeDamage(int index) {
         boolean tempTurn = controllerBattle.getTurn();
         controllerBattle.processAttack(index);
@@ -211,7 +193,6 @@ public class BattlePokemonGUI extends JFrame implements ViewBattle {
         }
         updateThings();
     }
-
 
     public void setAttacksButtons() {
         attacksButtons1 = new PokemonAttacksButtons(controllerBattle.getPokemon1().getAttacks());
@@ -285,5 +266,4 @@ public class BattlePokemonGUI extends JFrame implements ViewBattle {
         mainPanel.add(labelPokemon1, Integer.valueOf(2));
         mainPanel.add(labelPokemon2, Integer.valueOf(2));
     }
-
 }

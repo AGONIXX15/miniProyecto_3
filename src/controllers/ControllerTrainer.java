@@ -4,7 +4,6 @@ import models.PokemonFactory;
 import models.Trainer;
 import view.ViewTrainer;
 import view.ViewTrainerInterface;
-import view.battle.console.BattlePokemonConsole;
 
 public class ControllerTrainer {
     public ViewTrainerInterface viewI;
@@ -12,10 +11,8 @@ public class ControllerTrainer {
     public Trainer trainer1, trainer2;
     private static ControllerTrainer instance;
 
-
     public ControllerTrainer() {
     }
-
 
     public void setViewI(ViewTrainerInterface viewI) {
         this.viewI = viewI;

@@ -9,9 +9,6 @@ import java.awt.*;
 public class PokemonAttacksButtons extends JPanel {
     private boolean touched;
 
-
-
-
     public PokemonAttacksButtons(Attack[]attacks) {
         setPreferredSize(new Dimension(400, 400));
         GridLayout grid = new GridLayout(2,2);
@@ -43,7 +40,6 @@ public class PokemonAttacksButtons extends JPanel {
 
     }
 
-
     public static void main(String[] args) {
         JFrame frame = new JFrame("Pokemon Attacks");
         frame.setSize(1000,1000);
@@ -60,6 +56,4 @@ public class PokemonAttacksButtons extends JPanel {
         frame.add(label);
         frame.setVisible(true);
     }
-
-
 }

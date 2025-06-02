@@ -38,7 +38,6 @@ public class Pokemon {
         this.speed = speed;
     }
 
-
     public String getImagenUrl() {
         return imagenUrl;
     }
@@ -74,8 +73,6 @@ public class Pokemon {
     public Attack[] getAttacks() {
         return attacks;
     }
-
-
 
 
     public void setAttacks(Attack[] attacks) {

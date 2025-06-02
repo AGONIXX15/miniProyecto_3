@@ -6,7 +6,6 @@ import models.Pokemon;
 import models.Trainer;
 import view.battle.ViewBattle;
 
-import java.awt.*;
 import java.util.Scanner;
 
 public class BattlePokemonConsole implements ViewBattle {
@@ -77,16 +76,4 @@ public class BattlePokemonConsole implements ViewBattle {
         }while(condition);
         return index;
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -16,9 +16,6 @@ public class ViewTrainerConsole implements ViewTrainerInterface {
         this.controllerTrainer = controllerTrainer;
     }
 
-    public ViewTrainerConsole() {
-    }
-
     @Override
     public void mostrarMenu() {
         int opcion;
@@ -44,7 +41,6 @@ public class ViewTrainerConsole implements ViewTrainerInterface {
                     break;
                 case 2:
                     ControllerTrainer.getInstance().MostrarPokemons();
-
                     break;
                 case 3:
 
@@ -70,13 +66,8 @@ public class ViewTrainerConsole implements ViewTrainerInterface {
         } while (opcion != 4);
     }
 
-
     @Override
     public void mostrarMensaje(String mensaje) {
         System.out.println(mensaje);
-    }
-
-    public void setControllerTrainer(ControllerTrainer controllerTrainer) {
-        this.controllerTrainer = controllerTrainer;
     }
 }
