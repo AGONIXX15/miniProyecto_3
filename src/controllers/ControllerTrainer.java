@@ -5,9 +5,11 @@ import models.Trainer;
 import view.ViewTrainer;
 import view.ViewTrainerInterface;
 
+/**
+ * @author Sebastian Devia
+ */
 public class ControllerTrainer {
     public ViewTrainerInterface viewI;
-    public ViewTrainer viewTrainer;
     public Trainer trainer1, trainer2;
     private static ControllerTrainer instance;
 
@@ -18,6 +20,7 @@ public class ControllerTrainer {
         this.viewI = viewI;
     }
 
+    // con los nombres crea los trainers los cuales recibe desde la vista
     public void introducirTrainers(String nombre1, String nombre2) {
         trainer1 = new Trainer(nombre1, PokemonFactory.loadAvailablePokemons());
         trainer2 = new Trainer(nombre2, PokemonFactory.loadAvailablePokemons());

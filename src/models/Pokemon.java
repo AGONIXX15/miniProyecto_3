@@ -87,19 +87,15 @@ public class Pokemon {
         sb.append("Nombre = ").append(name)
                 .append(", Tipo = ").append(type)
                 .append(", Salud = ").append(health)
-            .append(", Velocidad = ").append(speed)
-        ;
-
-
+            .append(", Velocidad = ").append(speed);
         return sb.toString();
-
-
     }
     public void cure(int health){
         this.health = Math.min(this.health + health, this.healthMax);
         System.out.printf("%s" + " Ha sido curado hasta %d\n", this.name, this.health);
     }
 
+    // metodo de recibir daño del pokemon
     public void takeDamage(int damage) {
         health = Math.max(0, health-damage);
     }
@@ -117,6 +113,7 @@ public class Pokemon {
         return health > 0;
     }
 
+    // metodo para realizar daño
     public void makeDamage(Pokemon enemy, Attack attack){
         float advantage = (hasAdvantage(enemy)) ? 1.3f : 1;
         if(advantage > 1){
@@ -135,6 +132,7 @@ public class Pokemon {
                         ", Salud = " + health ;
     }
 
+    // clonar en memoria el pokemon
     public Pokemon clonar(){
         return new Pokemon(name, healthMax, type, attacks,imagenUrl,defense, specialDefense, speed);
     }

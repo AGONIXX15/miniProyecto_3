@@ -1,13 +1,8 @@
 package models;
 
 
+// se encarga de crear los pokemones que pueden ser utilizados
 public class PokemonFactory {
-
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\u001B[91m";
-    public static final String CYAN_BOLD = "\u001B[1;96m";
-    public static final String WHITE_BOLD = "\u001B[1;97m";
-    public static final String GREEN = "\u001B[32m";
 
     //metodo que crea y devuelve todos los pokemones predefinidos disponibles
     public static Pokemon[] loadAvailablePokemons() {

@@ -5,7 +5,7 @@ import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.io.IOException;
 import java.io.InputStream;
-
+// clase para cargar la fuente personalizada
 public class CustomFont {
     public static Font loadfont(float size) {
         try {
