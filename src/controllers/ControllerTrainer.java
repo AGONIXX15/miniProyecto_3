@@ -1,4 +1,4 @@
-package controller;
+package controllers;
 
 import models.PokemonFactory;
 import models.Trainer;
@@ -11,10 +11,8 @@ public class ControllerTrainer {
     public Trainer trainer1, trainer2;
     private static ControllerTrainer instance;
 
-
     public ControllerTrainer() {
     }
-
 
     public void setViewI(ViewTrainerInterface viewI) {
         this.viewI = viewI;
@@ -26,23 +24,19 @@ public class ControllerTrainer {
         trainer1.randomTeam();
         trainer2.randomTeam();
 
-        this.viewI.mostrarMensaje("trainer introducidos");
+        this.viewI.mostrarMensaje("Entrenadores introducidos Correctamente.");
 
     }
 
     public void MostrarPokemons() {
         if (trainer1 == null || trainer2 == null) {
-            viewI.mostrarMensaje("Primero debes introducir los entrenadores.");
+            viewI.mostrarMensaje("⚠️Primero debes introducir los entrenadores.");
             return;
         }
         viewI.mostrarMensaje("\nEl equipo de " + trainer1.getNameTrainer());
         trainer1.getTeam();
         viewI.mostrarMensaje("\nEl equipo de " + trainer2.getNameTrainer());
         trainer2.getTeam();
-    }
-
-    public void iniciarBatalla() {
-        System.out.println("batalla!");
     }
 
     public static ControllerTrainer getInstance() {

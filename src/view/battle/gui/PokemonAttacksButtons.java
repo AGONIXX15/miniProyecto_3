@@ -1,4 +1,4 @@
-package view.battle;
+package view.battle.gui;
 import models.Attack;
 import models.AttackFactory;
 import utils.CustomFont;
@@ -7,15 +7,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PokemonAttacksButtons extends JPanel {
-
-    private int attack;
+    private boolean touched;
 
     public PokemonAttacksButtons(Attack[]attacks) {
-        attack = -1;
         setPreferredSize(new Dimension(400, 400));
         GridLayout grid = new GridLayout(2,2);
         grid.setVgap(10);
         grid.setHgap(10);
+        this.touched = false;
         setLayout(new GridLayout(2,2));
         for(int i = 0; i < attacks.length; i++) {
             JButton button = new JButton(String.format("%s", attacks[i].getName()));
@@ -25,19 +24,20 @@ public class PokemonAttacksButtons extends JPanel {
             int index = i;
             button.setPreferredSize(new Dimension(150, 150));
             button.addActionListener(e -> {
-                System.out.println("ataque escogido " + attacks[index] + " " + index);
-                attack = index;
-                BattlePokemonGUI.getInstance().updateTurn();
+                if(touched){
+                    return;
+                }
+
+                touched = true;
+               // System.out.println("ataque escogido " + attacks[index] + " " + index);
+                // attack = index;
                 BattlePokemonGUI.getInstance().makeDamage(index);
+                touched = false;
             });
 
             add(button);
         }
 
-    }
-
-    public int getAttack(){
-        return attack;
     }
 
     public static void main(String[] args) {
@@ -56,6 +56,4 @@ public class PokemonAttacksButtons extends JPanel {
         frame.add(label);
         frame.setVisible(true);
     }
-
-
 }

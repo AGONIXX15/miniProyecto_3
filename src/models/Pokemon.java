@@ -1,6 +1,6 @@
 package models;
 
-import view.battle.BattlePokemonGUI;
+import view.battle.gui.BattlePokemonGUI;
 
 public class Pokemon {
 
@@ -38,7 +38,6 @@ public class Pokemon {
         this.speed = speed;
     }
 
-
     public String getImagenUrl() {
         return imagenUrl;
     }
@@ -74,8 +73,6 @@ public class Pokemon {
     public Attack[] getAttacks() {
         return attacks;
     }
-
-
 
 
     public void setAttacks(Attack[] attacks) {
@@ -123,10 +120,10 @@ public class Pokemon {
     public void makeDamage(Pokemon enemy, Attack attack){
         float advantage = (hasAdvantage(enemy)) ? 1.3f : 1;
         if(advantage > 1){
-            BattlePokemonGUI.getInstance().putMessage("El ataque ha sido efectivo!!");
+            BattlePokemonGUI.getInstance().sendMessage("El ataque ha sido efectivo!!");
         }
         int damage = (int) (advantage * attack.getPower());
-        BattlePokemonGUI.getInstance().putMessage(String.format("%s realizo %s hacia %s con un daño de %d\n",name, attack.getName(), enemy.getName(), damage));
+        BattlePokemonGUI.getInstance().sendMessage(String.format("%s realizo %s hacia %s con un daño de %d\n",name, attack.getName(), enemy.getName(), damage));
         enemy.takeDamage(damage);
     }
 

@@ -1,4 +1,4 @@
-package view.battle;
+package view.battle.gui;
 
 import utils.CustomFont;
 
@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.Queue;
-
 
 public class MessageBattle extends JPanel {
     private JTextArea textArea;
@@ -16,7 +15,6 @@ public class MessageBattle extends JPanel {
     final private int speed = 15;
     private Queue<String> messageQueue = new LinkedList<>();
     private boolean isShowingMessage = false;
-
 
     /**
      * este es el constructor de la clase de mensajes para nuestro juego
@@ -84,7 +82,4 @@ public class MessageBattle extends JPanel {
     public CardLayout getCard() {
         return card;
     }
-
-
-
 }

@@ -1,18 +1,16 @@
 package view;
 
+import controllers.ControllerTrainer;
 import utils.ReproduceSound;
 import utils.CustomFont;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static view.ViewTrainer.StartSelectTrainerTeam;
-
 public class MainFrame extends JFrame {
     static ReproduceSound reproduceSound;
 
     public MainFrame() {
-
 
         setTitle("Batalla Pokémon");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -39,8 +37,7 @@ public class MainFrame extends JFrame {
         mensaje.setAlignmentX(Component.CENTER_ALIGNMENT);
         mensaje.setMaximumSize(new Dimension(800, 150));
 
-
-        ImageIcon imageHome = new ImageIcon("src/resources/images/botonInicio.png");
+        ImageIcon imageHome = new ImageIcon("resources/images/botonInicio.png");
         JButton begin = new JButton(imageHome);
         begin.setAlignmentX(Component.CENTER_ALIGNMENT);
         begin.setFocusPainted(false);
@@ -48,17 +45,17 @@ public class MainFrame extends JFrame {
         begin.setContentAreaFilled(false);
         begin.setOpaque(false);
 
-// Establece el tamaño igual al de la imagen
+        // Establece el tamaño igual al de la imagen
         begin.setPreferredSize(new Dimension(imageHome.getIconWidth(), imageHome.getIconHeight()));
 
         begin.addActionListener(e -> {
-            StartSelectTrainerTeam();
             setVisible(false);
-
+            ViewTrainer viewTrainer = new ViewTrainer();
+            ControllerTrainer controller = ControllerTrainer.getInstance();
+            controller.setViewI(viewTrainer);
         });
 
-
-        ImageIcon trainer1 = new ImageIcon("src/resources/images/fondo3.jpg");
+        ImageIcon trainer1 = new ImageIcon("resources/images/fondo3.jpg");
         Image image = trainer1.getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH);
         JLabel imagenLabel = new JLabel(new ImageIcon(image));
 
@@ -71,7 +68,7 @@ public class MainFrame extends JFrame {
         panel.add(begin);
 
 
-        ImageIcon backgroundImage = new ImageIcon("src/resources/images/fondo3.jpg");
+        ImageIcon backgroundImage = new ImageIcon("resources/images/fondo3.jpg");
         Image scaledImage = backgroundImage.getImage().getScaledInstance(
                 Toolkit.getDefaultToolkit().getScreenSize().width,
                 Toolkit.getDefaultToolkit().getScreenSize().height,
@@ -82,14 +79,11 @@ public class MainFrame extends JFrame {
         backgroundLabel.add(panel, BorderLayout.CENTER);
         setContentPane(backgroundLabel);
 
-
         setVisible(true); // Hace visible la ventana
 
-        reproduceSound = new ReproduceSound();
-        reproduceSound.loadSound("src/resources/sounds/Voicy_Pokemon GO Original Sounds_ GOCHA.wav");
+        reproduceSound= new ReproduceSound();
+        reproduceSound.loadSound("sounds/Voicy_Pokemon GO Original Sounds_ GOCHA.wav");
         reproduceSound.playSound();
     }
-
-
 }
 

@@ -1,19 +1,19 @@
 package view;
 
-import controller.ControllerTrainer;
+import controllers.ControllerBattle;
+import controllers.ControllerTrainer;
+import models.Trainer;
+import view.battle.console.BattlePokemonConsole;
 
 import java.util.Scanner;
 
-public class ViewTrainerConsola implements ViewTrainerInterface {
+public class ViewTrainerConsole implements ViewTrainerInterface {
     Scanner sc = new Scanner(System.in);
     public ControllerTrainer controllerTrainer;
     ViewTrainer viewTrainer;
 
-    public ViewTrainerConsola(ControllerTrainer controllerTrainer) {
+    public ViewTrainerConsole(ControllerTrainer controllerTrainer) {
         this.controllerTrainer = controllerTrainer;
-    }
-
-    public ViewTrainerConsola() {
     }
 
     @Override
@@ -41,11 +41,15 @@ public class ViewTrainerConsola implements ViewTrainerInterface {
                     break;
                 case 2:
                     ControllerTrainer.getInstance().MostrarPokemons();
-
                     break;
                 case 3:
 
-                    System.out.println("¡Batalla iniciada!");
+                    Trainer trainer1 = ControllerTrainer.getInstance().trainer1;
+                    Trainer trainer2 = ControllerTrainer.getInstance().trainer2;
+                    ControllerBattle controller = new ControllerBattle(trainer1, trainer2);
+                    BattlePokemonConsole view = new BattlePokemonConsole(controller);
+                    controller.setViewBattle(view);
+                    controller.startBattle();
                     break;
                 case 4:
                     System.out.println("cambiando de vista");
@@ -62,13 +66,8 @@ public class ViewTrainerConsola implements ViewTrainerInterface {
         } while (opcion != 4);
     }
 
-
     @Override
     public void mostrarMensaje(String mensaje) {
         System.out.println(mensaje);
-    }
-
-    public void setControllerTrainer(ControllerTrainer controllerTrainer) {
-        this.controllerTrainer = controllerTrainer;
     }
 }

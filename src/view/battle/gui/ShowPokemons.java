@@ -1,4 +1,4 @@
-package view.battle;
+package view.battle.gui;
 
 import models.Trainer;
 import utils.CustomFont;
@@ -12,6 +12,7 @@ import java.net.URL;
 public class ShowPokemons extends JScrollPane {
     private Trainer trainer;
     private int choose = -1;
+    private JLabel []labelInfos;
 
     public ShowPokemons(Trainer trainer) {
         setPreferredSize(new Dimension(600, 600));
@@ -19,6 +20,7 @@ public class ShowPokemons extends JScrollPane {
         JPanel panel = new JPanel();
         panel.setOpaque(false);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        labelInfos = new JLabel[trainer.getTeamArray().length];
         JLabel label = new JLabel(String.format("Escoge un Pokemon %s", trainer.getNameTrainer() + ":"));
         label.setForeground(Color.WHITE);
         label.setFont(CustomFont.loadfont(20f));
@@ -48,6 +50,7 @@ public class ShowPokemons extends JScrollPane {
 
             // Info del Pokémon
             JLabel infoLabel = new JLabel("Nombre: " + trainer.getTeamArray()[i].getName() + ", Tipo: " + trainer.getTeamArray()[i].getType() + ", Vida: " + trainer.getTeamArray()[i].getHealth());
+            labelInfos[i] = infoLabel;
             infoLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
             pokemonPanel.add(infoLabel, BorderLayout.CENTER);
 
@@ -76,6 +79,12 @@ public class ShowPokemons extends JScrollPane {
         setPreferredSize(new Dimension(500, 400));
         setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
         getVerticalScrollBar().setUnitIncrement(16);
+    }
+
+    public void update(){
+        for(int i = 0; i < trainer.getTeamArray().length; i++){
+            labelInfos[i].setText("Nombre: " + trainer.getTeamArray()[i].getName() + ", Tipo: " + trainer.getTeamArray()[i].getType() + ", Vida: " + trainer.getTeamArray()[i].getHealth());
+        }
     }
 
     public int  getChoose() {

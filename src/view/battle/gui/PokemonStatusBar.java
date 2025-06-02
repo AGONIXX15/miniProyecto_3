@@ -1,4 +1,4 @@
-package view.battle;
+package view.battle.gui;
 import utils.CustomFont;
 
 import javax.swing.*;
@@ -48,8 +48,6 @@ public class PokemonStatusBar extends JPanel {
            });
        timer.start();
    }
-
-
 
     @Override
     public void paintComponent(Graphics g) {
