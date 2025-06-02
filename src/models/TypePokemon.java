@@ -9,6 +9,7 @@ public enum TypePokemon {
     ;
 
     public String[] strong;
+    // hacemos que tenga una lista a los que son fuertes para hacer la comprobacion más rapido
     TypePokemon(String[] strong) {
         this.strong = strong;
     }

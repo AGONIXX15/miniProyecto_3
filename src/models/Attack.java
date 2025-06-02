@@ -53,13 +53,5 @@ public class Attack {
     public String toString() {
         return name + " (" + power + " de poder, tipo: " + typeDamage + ")";
     }
-
-
-    public void showInfo() {
-        System.out.println("Ataque: " + name);
-        System.out.println("Poder: " + power);
-        System.out.println("Tipo de Daño: " + typeDamage);
-
-    }
 }
 

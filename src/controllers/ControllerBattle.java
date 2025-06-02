@@ -11,15 +11,10 @@ public class ControllerBattle {
     private boolean isInBattle = false;
     private Combat combat;
 
-    private static ControllerBattle instance;
+    // constructor del controlador
     public ControllerBattle(Trainer trainer1, Trainer trainer2) {
         this.trainer1 = trainer1;
         this.trainer2 = trainer2;
-        instance = this;
-    }
-
-    public static ControllerBattle getInstance(){
-        return instance;
     }
 
     public void setViewBattle(ViewBattle viewBattle) {
@@ -40,6 +35,12 @@ public class ControllerBattle {
 
     }
 
+    /**
+     * @param index1 indice del pokemon del primer entrenador
+     * @param index2 indice del pokemon del segundo entrenador
+     * crea el objeto combate el cual es el que se va a encargar de administrar los turnos
+     * y ataques de los pokemones
+     */
     public void startCombat(int index1, int index2) {
         Pokemon pokemon1 = trainer1.getTeamArray()[index1];
         Pokemon pokemon2 = trainer2.getTeamArray()[index2];
@@ -47,11 +48,17 @@ public class ControllerBattle {
         isInBattle = true;
     }
 
+    /**
+     * @param index indice del ataque que ha sido escodigo
+     *  deja que el combate se encargue de procesar el ataque ya que el maneja toda la logica
+     *  sabe de quien es el turno por lo tanto procesara tal cual como se espera
+     */
     public void processAttack(int index){
         combat.makeAttack(index);
     }
 
 
+    //retorna el pokemon del entrenador 1
     public Pokemon getPokemon1(){
         if(isInBattle){
             return combat.getPokemon1();
@@ -59,6 +66,7 @@ public class ControllerBattle {
         throw new RuntimeException("no estan en batalla");
     }
 
+    // retorna el pokemon del entrenador 2
     public Pokemon getPokemon2(){
         if(isInBattle){
             return combat.getPokemon2();
@@ -66,6 +74,7 @@ public class ControllerBattle {
         throw new RuntimeException("no estan en batalla");
     }
 
+    // retorna el turno actual del combate
     public boolean getTurn(){
         if(isInBattle){
             return combat.getTurn();
@@ -73,6 +82,7 @@ public class ControllerBattle {
         throw new RuntimeException("no estan en batalla!");
     }
 
+    // pregunta si el combate ya ha finalizado
     public boolean hasFinish(){
         return combat.hasFinish();
     }

@@ -4,6 +4,7 @@ import javax.sound.sampled.*;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 
+// clase para reproducir un sonido
 public class ReproduceSound {
     private Clip clip;
 

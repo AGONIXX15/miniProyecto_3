@@ -3,6 +3,11 @@ package view.utils;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Sebastian Rubio
+ * se encarga de guardar los indices de los id de los pokemones
+ * para cargar las imagenes de la APi
+ */
 public class Pokedex {
     public static Map<String, Integer> pokedex = Map.ofEntries(
             Map.entry("Charmander", 4),

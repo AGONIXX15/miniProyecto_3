@@ -17,6 +17,10 @@ import javax.swing.*;
 import view.utils.Pokedex;
 import view.battle.gui.BattlePokemonGUI;
 
+/**
+ * @author Sebastian Devia
+ * interfaz grafica del menu de escoger entrenadores
+ */
 public class ViewTrainer extends JFrame implements ViewTrainerInterface {
     String nombre1, nombre2;
     JPanel contenedor;

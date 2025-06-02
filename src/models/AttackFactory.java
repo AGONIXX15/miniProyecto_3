@@ -1,5 +1,6 @@
 package models;
 
+// implementacion de constantes de ataques
 public class AttackFactory {
     public static final Attack THUNDERBOLT = new Attack("Rayo", (short)40, TypeDamage.ESPECIAL);
     public static final Attack FIRE_BLAST = new Attack("Llamarada", (short) 60, TypeDamage.ESPECIAL);
