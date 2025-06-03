@@ -35,7 +35,15 @@ El proyecto busca aplicar conceptos de **programación orientada a objetos y eve
 - **Entorno de desarrollo:** IntelliJ IDEA 
 
 ---
+## ▶️ Cómo Ejecutar
+- Nos hemos dado cuenta que al clonar no carga las imagenes ni los audios, por ende, debe marcar la carpeta "resources"
+de la siguiente manera:
+1. Presionar la siguiente combinacion de teclas: Ctrl + Alt + Shift + s
+2. ir a la parte de modulos y marcar carpeta "resources" como resources
 
+**Nota: Hemos actualizado solamente el Readme para informar sobre esto, no hemos tocado algo del codigo despues de la fecha de entrega.**
+
+---
 ## 📷 Capturas de Pantalla
 
 ### **GUI:**
